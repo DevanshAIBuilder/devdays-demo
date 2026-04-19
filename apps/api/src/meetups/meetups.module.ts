@@ -1,9 +1,3 @@
-import { Module } from '@nestjs/common';
-import { EventsController } from './meetups.controller.js';
-import { EventsService } from './meetups.service.js';
-
-@Module({
-  controllers: [EventsController],
-  providers: [EventsService],
-})
-export class EventsModule {}
+// This file is kept for backwards compatibility.
+// The active module has moved to src/events/events.module.ts
+export { EventsModule } from '../events/events.module.js';
