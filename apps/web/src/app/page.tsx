@@ -162,6 +162,12 @@ export default async function Home() {
             >
               Browse All Events
             </Link>
+            <Link
+              href="/events?featured=true"
+              className="bg-amber-400 text-amber-900 font-semibold px-6 py-3 rounded-xl hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-300 focus:ring-offset-2 focus:ring-offset-indigo-600 transition-colors"
+            >
+              ⭐ Featured Events
+            </Link>
           </div>
         </div>
       </section>
@@ -174,6 +180,104 @@ export default async function Home() {
           </div>
         </div>
       )}
+
+      {/* Explore the Platform */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          🚀 Explore the Platform
+        </h2>
+        <p className="text-gray-500 mb-6 text-sm">
+          Everything you need — find an event, filter by topic, or RSVP in seconds.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            {
+              href: "/events",
+              icon: "🗓️",
+              title: "All Events",
+              desc: "Browse every upcoming tech event in Lucknow.",
+              bg: "from-indigo-50 to-indigo-100",
+              border: "border-indigo-200",
+              text: "text-indigo-700",
+            },
+            {
+              href: "/events?featured=true",
+              icon: "⭐",
+              title: "Featured Events",
+              desc: "Hand-picked highlights from the Lucknow tech scene.",
+              bg: "from-amber-50 to-amber-100",
+              border: "border-amber-200",
+              text: "text-amber-700",
+            },
+            {
+              href: "/events?status=upcoming",
+              icon: "📅",
+              title: "Upcoming Events",
+              desc: "What's next — sorted by date.",
+              bg: "from-green-50 to-green-100",
+              border: "border-green-200",
+              text: "text-green-700",
+            },
+            {
+              href: "/events?category=ai-ml",
+              icon: "🤖",
+              title: "AI / ML Events",
+              desc: "Workshops, talks, and demos on AI and machine learning.",
+              bg: "from-purple-50 to-purple-100",
+              border: "border-purple-200",
+              text: "text-purple-700",
+            },
+            {
+              href: "/events?category=web-dev",
+              icon: "🌐",
+              title: "Web Dev",
+              desc: "React, Next.js, TypeScript, and full-stack sessions.",
+              bg: "from-blue-50 to-blue-100",
+              border: "border-blue-200",
+              text: "text-blue-700",
+            },
+            {
+              href: "/events?category=startups",
+              icon: "🚀",
+              title: "Startups",
+              desc: "Pitch nights, funding talks, and founder meetups.",
+              bg: "from-orange-50 to-orange-100",
+              border: "border-orange-200",
+              text: "text-orange-700",
+            },
+            {
+              href: "/events?category=devops",
+              icon: "⚙️",
+              title: "DevOps & Cloud",
+              desc: "Kubernetes, CI/CD, AWS, and cloud-native architecture.",
+              bg: "from-teal-50 to-teal-100",
+              border: "border-teal-200",
+              text: "text-teal-700",
+            },
+            {
+              href: "/events?category=open-source",
+              icon: "💻",
+              title: "Open Source",
+              desc: "Hackathons and contribution sprints.",
+              bg: "from-red-50 to-red-100",
+              border: "border-red-200",
+              text: "text-red-700",
+            },
+          ].map((card) => (
+            <Link
+              key={card.href}
+              href={card.href}
+              className={`group block bg-gradient-to-br ${card.bg} border ${card.border} rounded-2xl p-5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all`}
+            >
+              <span className="text-3xl mb-3 block">{card.icon}</span>
+              <h3 className={`font-semibold text-base ${card.text} mb-1 group-hover:underline`}>
+                {card.title}
+              </h3>
+              <p className="text-sm text-gray-600 leading-snug">{card.desc}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       {/* Categories */}
       {categories.length > 0 && (
