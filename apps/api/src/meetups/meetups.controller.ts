@@ -1,12 +1,3 @@
-import { Controller, Get } from '@nestjs/common';
-import { MeetupsService } from './meetups.service.js';
-
-@Controller('meetups')
-export class MeetupsController {
-  constructor(private readonly meetupsService: MeetupsService) {}
-
-  @Get()
-  findAll() {
-    return this.meetupsService.findAll();
-  }
-}
+// This file is kept for backwards compatibility.
+// The active implementation has moved to src/events/events.controller.ts
+export { EventsController } from '../events/events.controller.js';

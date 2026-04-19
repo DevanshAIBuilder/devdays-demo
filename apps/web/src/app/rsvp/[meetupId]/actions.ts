@@ -2,9 +2,9 @@
 
 import { RsvpSchema } from '@repo/shared';
 
-export async function submitRsvp(meetupId: number, formData: FormData) {
+export async function submitRsvp(eventId: number, formData: FormData) {
   const raw = {
-    meetupId,
+    eventId,
     name: formData.get('name'),
     email: formData.get('email'),
   };
