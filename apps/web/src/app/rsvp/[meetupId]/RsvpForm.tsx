@@ -4,16 +4,16 @@ import { useActionState } from 'react';
 import { submitRsvp } from './actions';
 
 interface RsvpFormProps {
-  meetupId: number;
+  eventId: number;
 }
 
 type State = { success?: boolean; error?: string } | null;
 
-export default function RsvpForm({ meetupId }: RsvpFormProps) {
+export default function RsvpForm({ eventId }: RsvpFormProps) {
   const [state, formAction, pending] = useActionState(
     async (_prev: State, formData: FormData): Promise<State> => {
       try {
-        await submitRsvp(meetupId, formData);
+        await submitRsvp(eventId, formData);
         return { success: true };
       } catch (err) {
         return { error: err instanceof Error ? err.message : 'Something went wrong.' };
@@ -42,7 +42,7 @@ export default function RsvpForm({ meetupId }: RsvpFormProps) {
           type="text"
           required
           minLength={2}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="border border-gray-300 rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
           placeholder="Your name"
         />
       </div>
@@ -56,19 +56,19 @@ export default function RsvpForm({ meetupId }: RsvpFormProps) {
           name="email"
           type="email"
           required
-          className="border border-gray-300 rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="border border-gray-300 rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
           placeholder="you@example.com"
         />
       </div>
 
       {state?.error && (
-        <p className="text-red-600 text-sm">{state.error}</p>
+        <p className="text-red-600 text-sm" role="alert">{state.error}</p>
       )}
 
       <button
         type="submit"
         disabled={pending}
-        className="bg-blue-600 text-white font-medium px-5 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+        className="bg-indigo-600 text-white font-medium px-5 py-2 rounded-lg hover:bg-indigo-700 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors"
       >
         {pending ? 'Submitting…' : 'RSVP'}
       </button>

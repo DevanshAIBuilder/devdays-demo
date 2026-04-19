@@ -7,18 +7,55 @@ datasource db {
   provider = "sqlite"
 }
 
-model Meetup {
-  id          Int    @id @default(autoincrement())
-  title       String
-  date        String
-  description String
-  rsvps       Rsvp[]
+model Category {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+  slug   String  @unique
+  color  String  @default("#6366F1")
+  events Event[]
+}
+
+model Event {
+  id              Int       @id @default(autoincrement())
+  title           String
+  slug            String    @unique
+  description     String
+  date            String
+  time            String    @default("")
+  endDate         String?
+  endTime         String?
+  venue           String    @default("")
+  address         String    @default("")
+  city            String    @default("Lucknow")
+  organizer       String    @default("")
+  organizerUrl    String?
+  imageUrl        String?
+  registrationUrl String?
+  maxAttendees    Int?
+  status          String    @default("upcoming")
+  isFeatured      Boolean   @default(false)
+  tags            String    @default("")
+  categoryId      Int?
+  category        Category? @relation(fields: [categoryId], references: [id])
+  rsvps           Rsvp[]
+  comments        Comment[]
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 }
 
 model Rsvp {
-  id       Int    @id @default(autoincrement())
-  meetupId Int
-  name     String
-  email    String
-  meetup   Meetup @relation(fields: [meetupId], references: [id])
+  id      Int    @id @default(autoincrement())
+  eventId Int
+  name    String
+  email   String
+  event   Event  @relation(fields: [eventId], references: [id])
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  text      String
+  author    String
+  eventId   Int
+  event     Event    @relation(fields: [eventId], references: [id])
+  createdAt DateTime @default(now())
 }
